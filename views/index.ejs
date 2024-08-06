@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Messages</title>
+  </head>
+  <body>
+    <% messages.map((msg) => { %>
+    <div class="msg-block">
+      <div class="msg-title"><%= msg.text %></div>
+      <div class="msg-user"><%= msg.user %></div>
+      <div class="msg-date"><%= msg.added %></div>
+    </div>
+    <% }) %>
+    <a href="/new">
+      <button type="button">Create new message</button>
+    </a>
+  </body>
+</html>
