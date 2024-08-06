@@ -6,7 +6,10 @@ const path = require("path");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// set middleware
+// set static file middleware
+app.use(express.static(path.join(__dirname, 'public')))
+
+// set form parsing middleware
 app.use(express.urlencoded({ extended: true }));
 
 // import & set router
