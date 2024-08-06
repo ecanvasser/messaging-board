@@ -6,11 +6,14 @@
     <title>Messages</title>
   </head>
   <body>
-    <% messages.map((msg) => { %>
+    <% messages.map((msg, index) => { %>
     <div class="msg-block">
-      <div class="msg-title"><%= msg.text %></div>
-      <div class="msg-user"><%= msg.user %></div>
-      <div class="msg-date"><%= msg.added %></div>
+      <div class="msg-content">
+        <div class="msg-title"><%= msg.text %></div>
+        <div class="msg-user"><%= msg.user %></div>
+        <div class="msg-date"><%= msg.added %></div>
+      </div>
+      <a href="/message/details/<%= index%>"><button>Open details</button></a>
     </div>
     <% }) %>
     <a href="/new">

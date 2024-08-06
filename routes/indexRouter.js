@@ -17,6 +17,10 @@ router.get("/new", (req, res) => {
   res.render("newMsg");
 });
 
+router.get("/message/details/:id", (req, res) => {
+    res.render('details', {message: messages[req.params.id]})
+})
+
 // Adds newly created messages to messages model
 router.post("/new", newMsg);
 
