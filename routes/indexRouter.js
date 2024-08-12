@@ -12,15 +12,13 @@ const newMsg = require('../controllers/newMessage.js');
 router.get("/", controller.getMessages);
 
 // Routes to newMsg.ejs for new message creation
-router.get("/new", (req, res) => {
-  res.render("newMsg");
-});
+router.get("/new", controller.newMessageGet);
+
+// Adds newly created messages to messages model
+router.post("/new", controller.newMessagePost);
 
 router.get("/message/details/:id", (req, res) => {
     res.render('details', {message: messages[req.params.id]})
 })
-
-// Adds newly created messages to messages model
-router.post("/new", newMsg);
 
 module.exports = router;
