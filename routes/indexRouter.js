@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const controller = require('../models/queries.js')
 
 // import messages model that will be used to store new messages
 const messages = require("../models/messages.js");
@@ -8,9 +9,7 @@ const messages = require("../models/messages.js");
 const newMsg = require('../controllers/newMessage.js');
 
 // Routes to index.ejs and shows all messages
-router.get("/", (req, res) => {
-  res.render("index", { messages: messages });
-});
+router.get("/", controller.getMessages);
 
 // Routes to newMsg.ejs for new message creation
 router.get("/new", (req, res) => {
