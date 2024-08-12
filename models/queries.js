@@ -8,10 +8,12 @@ const pool = require("./pool.js");
 
 exports.newMessagePost = async (req, res) => {
   const { message, user } = req.body;
-  const { rows } = await pool.query("SELECT id FROM messages ORDER BY id DESC LIMIT 1");
+  const { rows } = await pool.query(
+    "SELECT id FROM messages ORDER BY id DESC LIMIT 1"
+  );
   pool.query(
     'INSERT INTO messages (id, message, "user", date) VALUES ($1, $2, $3, $4)',
-    [rows.length == 0 ? 0 : rows[0].id+1, message, user, new Date()]
+    [rows.length == 0 ? 0 : rows[0].id + 1, message, user, new Date()]
   );
   res.redirect("/");
 };
@@ -19,6 +21,14 @@ exports.newMessagePost = async (req, res) => {
 exports.getMessages = async (req, res) => {
   const { rows } = await pool.query("SELECT * FROM messages");
   res.render("index", { messages: rows });
+};
+
+exports.getMessageDetails = async (req, res) => {
+  const { id } = req.params;
+  const { rows } = await pool.query("SELECT * FROM messages WHERE id = $1", [
+    id,
+  ]);
+  res.render("details", { message: rows[0] });
 };
 
 exports.newMessageGet = (req, res) => {
